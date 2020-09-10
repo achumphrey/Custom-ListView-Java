@@ -17,7 +17,8 @@ public class CustomAdapter extends BaseAdapter {
     LayoutInflater inflater;
 
     // Create CustomAdapter constructor
-    public CustomAdapter(Context applicationContext, String[] ourAppsList,
+    public CustomAdapter(Context applicationContext,
+                         String[] ourAppsList,
                          int[] imagesList) {
         this.context = applicationContext;
         this.ourAppsList = ourAppsList;
@@ -41,15 +42,15 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View view, ViewGroup parent) {
 
-        convertView = inflater.inflate(R.layout.listview_item, null);
-        TextView ourAppsView = convertView.findViewById(R.id.textView);
-        ImageView iconsView = convertView.findViewById(R.id.icon);
+        view = inflater.inflate(R.layout.listview_item, parent, false);
+        TextView ourAppsView = view.findViewById(R.id.textView);
+        ImageView iconsView = view.findViewById(R.id.icon);
         ourAppsView.setText(ourAppsList[position]);
         iconsView.setImageResource(imagesList[position]);
 
-        convertView.setOnClickListener(new View.OnClickListener() {
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(v.getContext(), "Clicked on item:\n"
@@ -57,6 +58,6 @@ public class CustomAdapter extends BaseAdapter {
                         Toast.LENGTH_LONG).show();
             }
         });
-        return convertView;
+        return view;
     }
 }
